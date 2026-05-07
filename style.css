@@ -9,7 +9,10 @@ body {
   font-family: "Sour Gummy", "Jua", sans-serif;
   background: linear-gradient(160deg, #f6e9ff, #dff7ff, #fff2cc);
   min-height: 100vh;
+  min-height: 100dvh;
+  min-height: var(--app-height, 100dvh);
   color: #3a3a3a;
+  overflow-x: hidden;
 }
 
 .app {
@@ -82,6 +85,7 @@ main {
 .game-area {
   position: relative;
   height: 75vh;
+  height: min(75vh, 75dvh);
   min-height: 520px;
   border-radius: 24px;
   overflow: hidden;
@@ -171,6 +175,7 @@ main {
 .modal-content {
   width: min(680px, 92vw);
   max-height: 70vh;
+  max-height: 70dvh;
   overflow: auto;
   background: #fff;
   border-radius: 16px;
@@ -188,4 +193,60 @@ main {
   background: #f8fbff;
   border-radius: 10px;
   padding: 8px 10px;
+}
+
+@media (max-width: 900px) {
+  .app {
+    padding: 10px;
+  }
+
+  .top-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .left-controls,
+  .center-stats,
+  .right-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .game-area {
+    height: min(64vh, 64dvh);
+    min-height: 360px;
+  }
+
+  .bottom-panel {
+    flex-wrap: wrap;
+  }
+
+  #typingInput {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .small-btn,
+  .primary-btn {
+    padding: 7px 10px;
+    font-size: 0.9rem;
+  }
+
+  .center-stats span {
+    font-size: 0.82rem;
+    padding: 5px 8px;
+  }
+
+  .game-area {
+    height: min(58vh, 58dvh);
+    min-height: 300px;
+    border-radius: 18px;
+  }
+
+  .modal-content {
+    width: min(680px, 96vw);
+    max-height: 78dvh;
+    padding: 12px;
+  }
 }

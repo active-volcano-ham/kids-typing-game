@@ -865,12 +865,21 @@ function clearVocab() {
 
 function setupCanvas() {
   const canvas = el.fxCanvas;
+  const syncViewportHeight = () => {
+    const viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    document.documentElement.style.setProperty("--app-height", `${viewportHeight}px`);
+  };
   const resize = () => {
+    syncViewportHeight();
     canvas.width = el.gameArea.clientWidth;
     canvas.height = el.gameArea.clientHeight;
   };
   resize();
   window.addEventListener("resize", resize);
+  window.addEventListener("orientationchange", resize);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", resize);
+  }
 }
 
 function fireworks() {
